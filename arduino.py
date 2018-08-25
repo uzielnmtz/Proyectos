@@ -8,7 +8,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--file", help="Output file")
-parser.add_argument("-p", "--port", help="Arduino port")
+parser.add_argument("-p", "--port", help="Port")
 parser.add_argument("-N", help="Log length")
 parser.add_argument("-t", "--timeout")
 parser.add_argument("-b", "--baudrate")
@@ -81,4 +81,4 @@ with arduino:
             print('Exiting...')
             break
 
-np.savetxt(args.file, data)
+np.savetxt(file_name, data)
