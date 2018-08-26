@@ -5,7 +5,9 @@ import matplotlib.pyplot as plt
 import serial
 from collections import deque
 import argparse
+import platform
 
+os = platform.system()
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--file", help="Output file")
 parser.add_argument("-p", "--port", help="Port")
@@ -27,9 +29,13 @@ else:
     N = 200
 
 if args.port:
-    port = '/dev/cu.usbmodem' + args.port
+    if os == "Darwin":
+        port = '/dev/cu.usbmodem' + args.port
+    elif os == "Linux":
+        port = "/dev/" + args.port
 else:
-    port = '/dev/cu.usbmodem1421'
+    if os == "Darwin":
+        port = '/dev/cu.usbmodem1421'
 
 if args.timeout:
     timeout_ = float(args.timeout)
